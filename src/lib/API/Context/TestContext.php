@@ -9,6 +9,8 @@ namespace EzSystems\Behat\API\Context;
 use Behat\Behat\Context\Context;
 use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\UserService;
+use EzSystems\Behat\API\CommanD\ChangeRepositoryUserCommand;
+use EzSystems\Behat\Core\Command\CommandInvoker;
 
 class TestContext implements Context
 {
@@ -26,8 +28,7 @@ class TestContext implements Context
      */
     public function iAmLoggedAsUser(string $username)
     {
-        $user = $this->userService->loadUserByLogin($username);
-        $this->permissionResolver->setCurrentUserReference($user);
+        CommandInvoker::add(new ChangeRepositoryUserCommand($this->userService, $this->permissionResolver, $username));
     }
 
     /**
@@ -36,5 +37,21 @@ class TestContext implements Context
     public function loginAdminBeforeScenarioHook()
     {
         $this->iAmLoggedAsUser('admin');
+    }
+
+    /**
+     * @AfterStep
+     */
+    public function executeCommands()
+    {
+        CommandInvoker::execute();
+    }
+
+    /**
+     * @AfterScenario
+     */
+    public function rollbackTest()
+    {
+        CommandInvoker::rollback();
     }
 }

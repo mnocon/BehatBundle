@@ -9,7 +9,9 @@ namespace EzSystems\Behat\API\Context;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionCreateStruct;
+use EzSystems\Behat\API\CommanD\CreateContentTypeCommand;
 use EzSystems\Behat\API\Facade\ContentTypeFacade;
+use EzSystems\Behat\Core\Command\CommandInvoker;
 
 class ContentTypeContext implements Context
 {
@@ -31,7 +33,8 @@ class ContentTypeContext implements Context
         }
 
         $fieldDefinitions = $this->parseFieldDefinitions($fieldDetails);
-        $this->contentTypeFacade->createContentType($contentTypeName, $contentTypeIdentifier, $contentTypeGroupName, 'eng-GB', $fieldDefinitions);
+
+        CommandInvoker::add(new CreateContentTypeCommand($this->contentTypeFacade, $contentTypeName, $contentTypeIdentifier, $contentTypeGroupName, 'eng-GB', $fieldDefinitions));
     }
 
     private function parseFieldDefinitions(TableNode $fieldDetails): array

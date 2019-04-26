@@ -20,9 +20,7 @@ class LanguageFacade
 
     public function createLanguageIfNotExists(string $name, string $languageCode)
     {
-        try {
-            $this->languageService->loadLanguage($languageCode);
-        } catch (NotFoundException $e) {
+        if (!$this->languageExists($languageCode)) {
             $this->createLanguage($name, $languageCode);
         }
     }
@@ -34,5 +32,16 @@ class LanguageFacade
         $languageCreateStruct->name = $name;
 
         $this->languageService->createLanguage($languageCreateStruct);
+    }
+
+    public function languageExists(string $languageCode)
+    {
+        try {
+            $this->languageService->loadLanguage($languageCode);
+
+            return true;
+        } catch (NotFoundException $e) {
+            return false;
+        }
     }
 }

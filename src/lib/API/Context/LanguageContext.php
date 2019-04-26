@@ -7,7 +7,9 @@
 namespace EzSystems\Behat\API\Context;
 
 use Behat\Behat\Context\Context;
+use EzSystems\Behat\API\Command\CreateLanguageCommand;
 use EzSystems\Behat\API\Facade\LanguageFacade;
+use EzSystems\Behat\Core\Command\CommandInvoker;
 
 class LanguageContext implements Context
 {
@@ -23,6 +25,8 @@ class LanguageContext implements Context
      */
     public function createLanguageIfNotExists(string $name, string $languageCode)
     {
-        $this->languageFacade->createLanguageIfNotExists($name, $languageCode);
+        if (!$this->languageFacade->languageExists($languageCode)) {
+            CommandInvoker::add(new CreateLanguageCommand($this->languageFacade, $name, $languageCode));
+        }
     }
 }

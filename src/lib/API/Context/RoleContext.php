@@ -8,7 +8,10 @@ namespace EzSystems\Behat\API\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
+use EzSystems\Behat\API\CommanD\AddPolicyCommand;
+use EzSystems\Behat\API\CommanD\CreateRoleCommand;
 use EzSystems\Behat\API\Facade\RoleFacade;
+use EzSystems\Behat\Core\Command\CommandInvoker;
 
 class RoleContext implements Context
 {
@@ -29,7 +32,7 @@ class RoleContext implements Context
             return;
         }
 
-        $this->roleFacade->createRole($roleName);
+        CommandInvoker::add(new CreateRoleCommand($this->roleFacade, $roleName));
     }
 
     /**
@@ -41,10 +44,10 @@ class RoleContext implements Context
             return;
         }
 
-        $this->roleFacade->createRole($roleName);
+        CommandInvoker::add(new CreateRoleCommand($this->roleFacade, $roleName));
 
         foreach ($policies as $policy) {
-            $this->roleFacade->addPolicyToRole($roleName, $policy['module'], $policy['function']);
+            CommandInvoker::add(new AddPolicyCommand($this->roleFacade, $roleName, $policy['module'], $policy['function']));
         }
     }
 
@@ -54,7 +57,7 @@ class RoleContext implements Context
     public function addPolicyToRole($roleName, TableNode $policies): void
     {
         foreach ($policies as $policy) {
-            $this->roleFacade->addPolicyToRole($roleName, $policy['module'], $policy['function']);
+            CommandInvoker::add(new AddPolicyCommand($this->roleFacade, $roleName, $policy['module'], $policy['function']));
         }
     }
 
@@ -64,7 +67,7 @@ class RoleContext implements Context
     public function addPolicyToRoleWithLimitation(string $module, string $function, $roleName, TableNode $limitations): void
     {
         $parsedLimitations = $this->parseLimitations($limitations);
-        $this->roleFacade->addPolicyToRole($roleName, $module, $function, $parsedLimitations);
+        CommandInvoker::add(new AddPolicyCommand($this->roleFacade, $roleName, $module, $function, $parsedLimitations));
     }
 
     private function parseLimitations(TableNode $limitations)

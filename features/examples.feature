@@ -3,7 +3,7 @@ Feature: Example scenarios showing how to use steps from this bundle
   @admin
   Scenario: Create a language and Content Items
     Given Language "Polski" with code "pol-PL" exists
-    And I create 500 "Folder" Content items in root in "pol-PL"
+    And I create 5 "Folder" Content items in root in "pol-PL"
     And I create "Folder" Content items in root in "eng-GB"
        | name  | short_name |
        | test1 | test1_sn   |
@@ -33,12 +33,12 @@ Feature: Example scenarios showing how to use steps from this bundle
       | limitationType    | limitationValue |
       | Subtree           | /Media          |
       | Content Type      | Article         |
-
-  @admin
-  Scenario: Create Users, User groups and assign them to Roles
-    Given I create a user group "MyGroup"
-    And I create a user "TestUser"
-    And I create a user "AnotherTestUser" in group "MyGroup"
-    And I assign user "TestUser" to role "testRole1"
-    And I assign user group "MyGroup" to role "testRole2"
-
+#
+#  @admin
+#  Scenario: Create Users, User groups and assign them to Roles
+#    Given I create a user group "MyGroup"
+#    And I create a user "TestUser"
+#    And I create a user "AnotherTestUser" in group "MyGroup"
+#    And I assign user "TestUser" to role "testRole1"
+#    And I assign user group "MyGroup" to role "testRole2"
+#

@@ -13,7 +13,7 @@
     "require": {
         "php": "^7.1",
         "ezsystems/ezpublish-kernel": "^8.0@dev",
-        "phpunit/phpunit": "^5.7|^6.0|^7.0",
+        "phpunit/phpunit": "^7.0",
         "fzaninotto/faker": "^1.8",
         "behat/behat": "^3.4"
     },
@@ -23,7 +23,8 @@
     "autoload": {
         "psr-4": {
             "EzSystems\\BehatBundle\\": "src/bundle/",
-            "EzSystems\\Behat\\": "src/lib/"
+            "EzSystems\\Behat\\": "src/lib/",
+            "EzSystems\\Behat\\Test\\": "tests/"
         }
     },
     "scripts": {

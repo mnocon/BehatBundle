@@ -8,7 +8,9 @@ namespace EzSystems\Behat\API\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
+use EzSystems\Behat\API\CommanD\CreateContentCommand;
 use EzSystems\Behat\API\Facade\ContentFacade;
+use EzSystems\Behat\Core\Command\CommandInvoker;
 
 class ContentContext implements Context
 {
@@ -28,7 +30,7 @@ class ContentContext implements Context
         $parentUrl = $this->parseUrl($parentUrl);
 
         for ($i = 0; $i < $numberOfItems; ++$i) {
-            $this->contentFacade->createContent($contentTypeIdentifier, $parentUrl, $language);
+            CommandInvoker::add(new CreateContentCommand($this->contentFacade, $contentTypeIdentifier, $parentUrl, $language));
         }
     }
 
@@ -41,7 +43,7 @@ class ContentContext implements Context
         $parsedContentItemData = $this->parseData($contentItemsData);
 
         foreach ($parsedContentItemData as $contentItemData) {
-            $this->contentFacade->createContent($contentTypeIdentifier, $parentUrl, $language, $contentItemData);
+            CommandInvoker::add(new CreateContentCommand($this->contentFacade, $contentTypeIdentifier, $parentUrl, $language, $contentItemData));
         }
     }
 
