@@ -11,17 +11,30 @@ use EzSystems\Behat\Core\Command\CommandInterface;
 
 class CreateContentTypeCommand implements CommandInterface
 {
+    private $contentTypeFacade;
+    private $contentTypeName;
+    private $contentTypeIdentifier;
+    private $contentTypeGroup;
+    private $mainLanguageCode;
+    private $fieldDefinitions;
+
     public function __construct(ContentTypeFacade $contentTypeFacade, string $contentTypeName, string $contentTypeIdentifier, string $contentTypeGroupName, string $mainLanguageCode, array $fieldDefinitions)
     {
+        $this->contentTypeFacade = $contentTypeFacade;
+        $this->contentTypeName = $contentTypeName;
+        $this->contentTypeIdentifier = $contentTypeIdentifier;
+        $this->contentTypeGroup = $contentTypeGroupName;
+        $this->mainLanguageCode = $mainLanguageCode;
+        $this->fieldDefinitions = $fieldDefinitions;
     }
 
     public function execute(): void
     {
-        // TODO: Implement execute() method.
+        $this->contentTypeFacade->createContentType($this->contentTypeName, $this->contentTypeIdentifier, $this->contentTypeGroup, $this->mainLanguageCode, $this->fieldDefinitions);
     }
 
     public function rollback(): void
     {
-        // TODO: Implement rollback() method.
+        $this->contentTypeFacade->removeContentType($this->contentTypeIdentifier);
     }
 }

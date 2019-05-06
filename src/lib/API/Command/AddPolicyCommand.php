@@ -16,6 +16,7 @@ class AddPolicyCommand implements CommandInterface
     private $module;
     private $roleName;
     private $roleFacade;
+    private $newPolicyID;
 
     public function __construct(RoleFacade $roleFacade, string $roleName, string $module, string $function, $limitations = null)
     {
@@ -28,11 +29,11 @@ class AddPolicyCommand implements CommandInterface
 
     public function execute(): void
     {
-        // TODO: Implement execute() method.
+        $this->newPolicyID = $this->roleFacade->addPolicyToRole($this->roleName, $this->module, $this->function, $this->limitations);
     }
 
     public function rollback(): void
     {
-        // TODO: Implement rollback() method.
+        $this->roleFacade->removePolicyFromRoleById($this->roleName, $this->newPolicyID);
     }
 }

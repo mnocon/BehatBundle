@@ -48,7 +48,7 @@ class UserFacade
         $this->userService->createUserGroup($userGroupStruct, $parentGroup);
     }
 
-    public function createUser($userName, $userGroupName = null, $languageCode = 'eng-GB')
+    public function createUser(string $userName, string $userGroupName = null, string $languageCode = 'eng-GB')
     {
         $userCreateStruct = $this->userService->newUserCreateStruct(
             $userName,
@@ -67,7 +67,7 @@ class UserFacade
         $this->userService->createUser($userCreateStruct, [$parentGroup]);
     }
 
-    public function assignUserToRole($userName, $roleName)
+    public function assignUserToRole(string $userName, string $roleName)
     {
         $user = $this->userService->loadUserByLogin($userName);
         $role = $this->roleService->loadRoleByIdentifier($roleName);
@@ -75,7 +75,7 @@ class UserFacade
         $this->roleService->assignRoleToUser($role, $user);
     }
 
-    public function assignUserGroupToRole($userGroupName, $roleName)
+    public function assignUserGroupToRole(string $userGroupName, string $roleName)
     {
         $group = $this->loadUserGroupByName($userGroupName);
         $role = $this->roleService->loadRoleByIdentifier($roleName);

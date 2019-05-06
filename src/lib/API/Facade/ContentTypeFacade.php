@@ -51,4 +51,10 @@ class ContentTypeFacade
         // TODO: When refactoring in AdminUI move the mappings here
         return EzFieldElement::getFieldInternalNameByName($fieldtypeName);
     }
+
+    public function removeContentType($contentTypeIdentifier): void
+    {
+        $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
+        $this->contentTypeService->deleteContentType($contentType);
+    }
 }

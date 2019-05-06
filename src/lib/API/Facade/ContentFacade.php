@@ -8,8 +8,10 @@ namespace EzSystems\Behat\API\Facade;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\TrashService;
 use eZ\Publish\API\Repository\URLAliasService;
 use eZ\Publish\API\Repository\Values\Content\URLAlias;
+use eZ\Publish\Core\REST\Server\Values\Trash;
 use EzSystems\Behat\API\ContentData\ContentDataProvider;
 use PHPUnit\Framework\Assert;
 
@@ -27,15 +29,19 @@ class ContentFacade
     /** @var ContentDataProvider */
     private $contentDataProvider;
 
-    public function __construct(ContentService $contentService, LocationService $locationService, URLAliasService $urlAliasService, ContentDataProvider $contentDataProvider)
+    /** @var TrashService */
+    private $trashService;
+
+    public function __construct(ContentService $contentService, LocationService $locationService, URLAliasService $urlAliasService, TrashService $trashService, ContentDataProvider $contentDataProvider)
     {
         $this->contentService = $contentService;
         $this->locationService = $locationService;
         $this->urlAliasService = $urlAliasService;
+        $this->trashService = $trashService;
         $this->contentDataProvider = $contentDataProvider;
     }
 
-    public function createContent($contentTypeIdentifier, $parentUrl, $language, $contentItemData = null)
+    public function createContent(string $contentTypeIdentifier, string $parentUrl, string $language, array $contentItemData = null)
     {
         $parentUrlAlias = $this->urlAliasService->lookup($parentUrl);
         Assert::assertEquals(URLAlias::LOCATION, $parentUrlAlias->type);
@@ -52,6 +58,15 @@ class ContentFacade
         }
 
         $draft = $this->contentService->createContent($contentCreateStruct, [$locationCreateStruct]);
-        $this->contentService->publishVersion($draft->versionInfo);
+        $publishedContent = $this->contentService->publishVersion($draft->versionInfo);
+
+        return $publishedContent->getVersionInfo()->getContentInfo()->mainLocationId;
+    }
+
+    public function deleteContentById(string $mainLocationId)
+    {
+        $location = $this->locationService->loadLocation($mainLocationId);
+        $trashItem = $this->trashService->trash($location);
+        $this->trashService->deleteTrashItem($trashItem);
     }
 }

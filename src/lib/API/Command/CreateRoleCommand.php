@@ -23,11 +23,11 @@ class CreateRoleCommand implements CommandInterface
 
     public function execute(): void
     {
-        // TODO: Implement execute() method.
+        $this->roleFacade->createRole($this->roleName);
     }
 
     public function rollback(): void
     {
-        // TODO: Implement rollback() method.
+        $this->roleFacade->deleteRole($this->roleName);
     }
 }
