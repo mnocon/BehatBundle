@@ -37,6 +37,13 @@ services:
         class: EzSystems\BehatBundle\Controller\ExceptionController
         public: true
 
+    EzSystems\Behat\Core\Behat\ArgumentParser:
+        public: true
+
+#        ezbehatbundle.core.behat.languagefacade:
+#            class: EzSystems\BehatBundle\Core\Behat\UrlParser
+#            public: true
+
     EzSystems\BehatBundle\Command\CreateLanguageCommand:
         tags:
             - { name: console.command }

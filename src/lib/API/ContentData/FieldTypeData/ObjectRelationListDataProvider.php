@@ -6,6 +6,7 @@
  */
 namespace EzSystems\Behat\API\ContentData\FieldTypeData;
 
+use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
 use eZ\Publish\Core\FieldType\RelationList\Value;
 
 class ObjectRelationListDataProvider extends ObjectRelationDataProvider
@@ -18,5 +19,10 @@ class ObjectRelationListDataProvider extends ObjectRelationDataProvider
     public function generateData(string $language = 'eng-GB')
     {
         return new Value($this->getRandomContentIds(3));
+    }
+
+    public function parseFromString(string $value)
+    {
+        throw new NotImplementedException('Not implemented');
     }
 }

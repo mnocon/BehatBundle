@@ -8,6 +8,7 @@ namespace EzSystems\Behat\API\ContentData\FieldTypeData;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Query;
@@ -46,15 +47,15 @@ class ObjectRelationDataProvider implements FieldTypeDataProviderInterface
             return $result->valueObject->contentInfo->id;
         }, $results->searchHits);
 
-        $contentIDs = array_filter($contentIDs, function (int $contentID) {
-            try {
-                $this->contentService->loadContentInfo($contentID);
-
-                return true;
-            } catch (NotFoundException $e) {
-            } catch (UnauthorizedException $e) {
-            }
-        });
+//        $contentIDs = array_filter($contentIDs, function (int $contentID) {
+//            try {
+//                $this->contentService->loadContentInfo($contentID);
+//
+//                return true;
+//            } catch (NotFoundException $e) {
+//            } catch (UnauthorizedException $e) {
+//            }
+//        });
 
         $indices = array_rand($contentIDs, $number);
 
@@ -69,5 +70,10 @@ class ObjectRelationDataProvider implements FieldTypeDataProviderInterface
         }
 
         return $randomContentIDs;
+    }
+
+    public function parseFromString(string $value)
+    {
+        throw new NotImplementedException('Not implemented');
     }
 }
