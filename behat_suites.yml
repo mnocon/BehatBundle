@@ -23,6 +23,7 @@ behat:
               - EzSystems\Behat\Core\Context\ConfigurationContext:
                   projectDir: '%paths.base%'
               - EzSystems\Behat\Browser\Context\BrowserContext
+              - EzSystems\Behat\Browser\Context\Hooks
               - EzSystems\Behat\Browser\Context\FrontendContext:
                   argumentParser: '@EzSystems\Behat\Core\Behat\ArgumentParser'
               - EzSystems\Behat\Browser\Context\CacheContext
