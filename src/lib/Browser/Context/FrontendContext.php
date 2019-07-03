@@ -38,13 +38,13 @@ class FrontendContext implements Context
      */
     public function iAmLoggedAsUserOnSiteaccess(string $username, string $siteaccess)
     {
-        $this->browserContext->visit(sprintf('/%s/%s', $siteaccess, '/logout'));
+        $this->browserContext->visit(sprintf('/%s/%s', $siteaccess, 'logout'));
 
         if ($username === 'anonymous') {
             return;
         }
 
-        $this->browserContext->visit(sprintf('/%s/%s', $siteaccess, '/login'));
+        $this->browserContext->visit(sprintf('/%s/%s', $siteaccess, 'login'));
         $this->browserContext->findElement('#username')->setValue($username);
         $password = $username === 'admin' ? 'publish' : 'Passw0rd42';
         $this->browserContext->findElement('#password')->setValue($password);
