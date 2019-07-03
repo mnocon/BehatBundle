@@ -10,6 +10,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 use EzSystems\Behat\Browser\Factory\PageObjectFactory;
+use EzSystems\Behat\Browser\Page\Preview\FolderPreview;
 use EzSystems\Behat\Core\Behat\ArgumentParser;
 use PHPUnit\Framework\Assert;
 
@@ -67,7 +68,7 @@ class FrontendContext implements Context
      */
     public function iSeeCorrectPreviewDataFor(string $contentType, TableNode $previewData): void
     {
-        $folderPreviewPage = PageObjectFactory::createPage($this->browserContext, PageObjectFactory::getPreviewType($contentType));
+        $folderPreviewPage = new FolderPreview($this->browserContext);
         Assert::assertEquals($previewData->getHash()[0]['value'], $folderPreviewPage->getPageTitle());
     }
 }

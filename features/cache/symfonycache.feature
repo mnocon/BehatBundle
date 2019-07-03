@@ -7,7 +7,7 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
       | name       | short_name |
       | TestFolder | <itemName> |
     And I viewing the pages on siteaccess "site" as <user>
-    When I visit "TestFolderShortName" on siteaccess "site"
+    When I visit <itemName> on siteaccess "site"
     Then I see correct preview data for "Folder" Content Type
       | field | value      |
       | title | <itemName> |
@@ -34,6 +34,7 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
     When I edit "TestFolderShortNameToEdit" Content item in "eng-GB"
       | short_name           |
       | <itemName>Edit<user> |
+    And I reload the page
     And I reload the page
     Then I see correct preview data for "Folder" Content Type
       | field | value                |
