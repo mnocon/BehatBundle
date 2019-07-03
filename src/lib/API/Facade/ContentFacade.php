@@ -7,6 +7,7 @@
 namespace EzSystems\Behat\API\Facade;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\URLAliasService;
 use eZ\Publish\API\Repository\Values\Content\URLAlias;
@@ -64,6 +65,7 @@ class ContentFacade
         $contentDraft = $this->contentService->createContentDraft($location->getContentInfo());
         $contentUpdateStruct = $this->contentService->newContentUpdateStruct();
 
+        $this->contentDataProvider->setContentTypeIdentifier($contentDraft->getContentType()->identifier);
         $this->contentDataProvider->getFilledContentDataStruct($contentUpdateStruct, $contentItemData, $language);
 
         $updatedDraft = $this->contentService->updateContent($contentDraft->getVersionInfo(), $contentUpdateStruct);
