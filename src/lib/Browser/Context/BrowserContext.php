@@ -6,11 +6,13 @@
  */
 namespace EzSystems\Behat\Browser\Context;
 
+use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Element\TraversableElement;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\MinkExtension\Context\MinkContext;
 use Exception;
+use PHPUnit\Framework\Assert;
 use WebDriver\Exception\ElementNotVisible;
 
 class BrowserContext extends MinkContext
@@ -306,6 +308,7 @@ class BrowserContext extends MinkContext
         $movingScript = sprintf('dragMock.dragStart(%s).dragOver(%s).delay(100).drop(%s);', $startExpression, $hoverExpression, $placeholderExpression);
         $this->getSession()->getDriver()->executeScript($movingScript);
     }
+
 
     private function loadDraggingLibrary(): void
     {

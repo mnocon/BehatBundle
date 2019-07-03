@@ -29,6 +29,14 @@ matrix:
     - name: "Behat tests"
       php: 7.3
       env: BEHAT_OPTS="--profile=behat --suite=examples"
+    - name: "[TMP] Cache tests -Symfony"
+      php: 7.3
+      env: BEHAT_OPTS="--profile=behat --suite=examples --tags=symfonycache"
+    - name: "[TMP] Cache tests -Varnish"
+      php: 7.3
+      env:
+        - BEHAT_OPTS="--profile=behat --suite=examples --tags=varnish"
+        - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
 
 git:
   depth: 30
