@@ -20,17 +20,17 @@ class FrontendContext implements Context
 
     private $argumentParser;
 
+    public function __construct(ArgumentParser $argumentParser)
+    {
+        $this->argumentParser = $argumentParser;
+    }
+
     /** @BeforeScenario
      * @param BeforeScenarioScope $scope Behat scope
      */
     public function getUtilityContext(BeforeScenarioScope $scope): void
     {
         $this->browserContext = $scope->getEnvironment()->getContext(BrowserContext::class);
-    }
-
-    public function __construct(ArgumentParser $argumentParser)
-    {
-        $this->argumentParser = $argumentParser;
     }
 
     /**

@@ -22,13 +22,13 @@ branches:
 
 matrix:
   include:
-    - name: "Code Style Check"
-      env: CHECK_CS=1
-    - name: "Unit tests"
-      env: PHPUNIT_CONFIG='phpunit.xml'
-    - name: "Behat tests"
-      php: 7.3
-      env: BEHAT_OPTS="--profile=behat --suite=examples"
+#    - name: "Code Style Check"
+#      env: CHECK_CS=1
+#    - name: "Unit tests"
+#      env: PHPUNIT_CONFIG='phpunit.xml'
+#    - name: "Behat tests"
+#      php: 7.3
+#      env: BEHAT_OPTS="--profile=behat --suite=examples"
     - name: "[TMP] Cache tests -Symfony"
       php: 7.3
       env: BEHAT_OPTS="--profile=behat --suite=examples --tags=symfonycache"
@@ -37,6 +37,7 @@ matrix:
       env:
         - BEHAT_OPTS="--profile=behat --suite=examples --tags=varnish"
         - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
+        - WEB_HOST=varnish
 
 git:
   depth: 30
