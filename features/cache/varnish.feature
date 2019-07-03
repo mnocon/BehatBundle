@@ -1,4 +1,4 @@
-@symfonycache
+@varnish
 Feature: As an site administrator I want my pages to be cached using Varnish
 
   @admin
