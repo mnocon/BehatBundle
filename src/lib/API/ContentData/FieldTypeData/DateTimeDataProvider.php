@@ -23,6 +23,6 @@ class DateTimeDataProvider extends RandomDataGenerator implements FieldTypeDataP
 
     public function parseFromString(string $value)
     {
-        return DateTime::createFromFormat('Y-M-D H:M:S', $value);
+        return DateTime::createFromFormat('Y-m-d H:i:s', $value);
     }
 }

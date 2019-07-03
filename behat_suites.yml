@@ -2,7 +2,30 @@ behat:
     suites:
         examples:
             paths:
-                - '%paths.base%/vendor/ezsystems/behatbundle/features/'
+                - '%paths.base%/vendor/ezsystems/behatbundle/features/examples'
+            contexts:
+              - EzSystems\Behat\API\Context\TestContext:
+                  userService: '@ezpublish.api.service.user'
+                  permissionResolver: '@eZ\Publish\API\Repository\PermissionResolver'
+              - EzSystems\Behat\API\Context\ObjectStateContext:
+                  objectStateService: '@ezpublish.api.service.object_state'
+              - EzSystems\Behat\API\Context\ContentContext:
+                  contentFacade: '@ezbehatbundle.api.facade.contentfacade'
+                  argumentParser: '@EzSystems\Behat\Core\Behat\ArgumentParser'
+              - EzSystems\Behat\API\Context\ContentTypeContext:
+                  contentTypeFacade: '@ezbehatbundle.api.facade.contenttypefacade'
+              - EzSystems\Behat\API\Context\UserContext:
+                  userFacade: '@ezbehatbundle.api.facade.userfacade'
+              - EzSystems\Behat\API\Context\RoleContext:
+                  roleFacade: '@ezbehatbundle.api.facade.rolefacade'
+              - EzSystems\Behat\API\Context\LanguageContext:
+                  languageFacade: '@ezbehatbundle.api.facade.languagefacade'
+              - EzSystems\Behat\Core\Context\ConfigurationContext:
+                  projectDir: '%paths.base%'
+
+        cache:
+            paths:
+                - '%paths.base%/vendor/ezsystems/behatbundle/features/cache'
             contexts:
               - EzSystems\Behat\API\Context\TestContext:
                   userService: '@ezpublish.api.service.user'

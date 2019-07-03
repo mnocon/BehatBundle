@@ -47,16 +47,6 @@ class ObjectRelationDataProvider implements FieldTypeDataProviderInterface
             return $result->valueObject->contentInfo->id;
         }, $results->searchHits);
 
-//        $contentIDs = array_filter($contentIDs, function (int $contentID) {
-//            try {
-//                $this->contentService->loadContentInfo($contentID);
-//
-//                return true;
-//            } catch (NotFoundException $e) {
-//            } catch (UnauthorizedException $e) {
-//            }
-//        });
-
         $indices = array_rand($contentIDs, $number);
 
         if ($number === 1) {
