@@ -71,6 +71,6 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
        | Date and time CT2     | DateAndTimeCT2        | Date and time                | 2018-12-31 13:55:00                                                         |
        | Content relation CT2  | ContentRelationCT2    | Content relation (single)    | /RelationFolder1                                                            |
        | Content relations CT2 | ContentRelationsCT2   | Content relations (multiple) | RelationFolder1,/RelationFolder2                                            |
-       | Image CT2             | ImageCT2              | Image                        | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Images/small1.jpg |
-       | File CT2              | FileCT2               | File                         | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Files/file1.txt   |
-       | Media CT2             | MediaCT2              | Media                        | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Videos/video1.mp4 |
+       | Image CT2             | ImageCT2              | Image                        | /var/www/vendor/ezsystems/behatbundle/src/lib/Data/Images/small1.jpg |
+       | File CT2              | FileCT2               | File                         | /var/www/vendor/ezsystems/behatbundle/src/lib/Data/Files/file1.txt   |
+       | Media CT2             | MediaCT2              | Media                        | /var/www/vendor/ezsystems/behatbundle/src/lib/Data/Videos/video1.mp4 |
