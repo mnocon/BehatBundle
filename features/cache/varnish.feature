@@ -10,8 +10,8 @@ Feature: As an site administrator I want my pages to be cached using Varnish
     When I visit <itemName> on siteaccess "site"
     And I reload the page
     Then I see correct preview data for "Folder" Content Type
-      | field | value               |
-      | title | TestFolderShortName |
+      | field | value      |
+      | title | <itemName> |
     And response headers contain
       | Header        | Value                                        |
       | Cache-Control | private, no-cache, no-store, must-revalidate |
@@ -34,7 +34,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
     And I see correct preview data for "Folder" Content Type
       | field | value      |
       | title | <itemName> |
-    When I edit "<itemName" Content item in "eng-GB"
+    When I edit "<itemName>" Content item in "eng-GB"
       | short_name          |
       | <itemNameAfterEdit> |
     And I reload the page

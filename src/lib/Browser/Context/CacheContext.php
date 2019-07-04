@@ -31,6 +31,8 @@ class CacheContext implements Context
     {
         $responseHeaders = $this->browserContext->getSession()->getDriver()->getResponseHeaders();
 
+        var_dump($this->browserContext->getSession()->getPage()->getContent());
+
         foreach ($expectedHeadersData->getHash() as $row) {
             Assert::assertEquals($row['Value'], $responseHeaders[$row['Header']][0]);
         }
