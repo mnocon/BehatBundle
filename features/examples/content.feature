@@ -42,8 +42,8 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
       | Text line   | Name         | name	           | yes      | yes	       | yes          |
       | <fieldType> | TestedField  | testedfield       | yes      | no	       | yes          |
     And I create <contentTypeIdentifier> Content items in root in "eng-GB"
-      | name              | short_name        |
-      | <contentTypeName> | <contentTypeName> |
+      | name              |
+      | <contentTypeName> |
     And I create "Folder" Content items in root in "eng-GB"
       | name              | short_name      |
       | RelationFolder1   | RelationFolder1 |
