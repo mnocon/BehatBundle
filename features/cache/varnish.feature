@@ -14,7 +14,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
       | title | <itemName> |
     And response headers contain
       | Header        | Value                                        |
-      | Cache-Control | private, no-cache, no-store, must-revalidate |
+      | cache-control | private, no-cache, no-store, must-revalidate |
       | X-Cache       | HIT                                          |
       | X-Cache-Hits  | 1                                            |
     And "Age" response header has value greater than 0
@@ -44,7 +44,7 @@ Feature: As an site administrator I want my pages to be cached using Varnish
       | title | <itemNameAfterEdit> |
     And response headers contain
       | Header        | Value                                        |
-      | Cache-Control | private, no-cache, no-store, must-revalidate |
+      | cache-control | private, no-cache, no-store, must-revalidate |
       | X-Cache       | HIT                                          |
       | X-Cache-Hits  | 1                                            |
 
