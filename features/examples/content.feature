@@ -38,8 +38,8 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
   @admin
   Scenario Outline: Create a Content item and edit specified field
     Given I create <contentTypeIdentifier> Content items in root in "eng-GB"
-      | name              | short_name              |
-      | <contentTypeName> | <contentTypeIdentifier> |
+      | name                    | short_name              |
+      | <contentTypeIdentifier> | <contentTypeIdentifier> |
     And I create "Folder" Content items in root in "eng-GB"
       | name              | short_name      |
       | RelationFolder1   | RelationFolder1 |

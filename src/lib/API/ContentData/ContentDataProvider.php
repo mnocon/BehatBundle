@@ -60,11 +60,16 @@ class ContentDataProvider
     {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($this->contentTypeIdentifier);
         $fieldDefinitions = $contentType->getFieldDefinitions();
+        var_dump($this->contentTypeIdentifier);
+        var_dump($fieldDefinitions);
+        var_dump($contentItemData);
 
         foreach ($contentItemData as $fieldIdentifier => $value) {
             $fieldDefinition = array_values(array_filter($fieldDefinitions, function (FieldDefinition $fieldDefinition) use ($fieldIdentifier) {
                 return $fieldDefinition->identifier === $fieldIdentifier;
             }));
+
+            var_dump($fieldDefinition);
 
             $fieldData = $this->getFieldDataFromString($fieldDefinition[0]->fieldTypeIdentifier, $value);
             $contentStruct->setField($fieldIdentifier, $fieldData, $language);
