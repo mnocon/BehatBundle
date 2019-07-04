@@ -15,8 +15,8 @@ Feature: As an site administrator I want my pages to be cached using Varnish
     And response headers contain
       | Header        | Value                                        |
       | cache-control | public, s-maxage=600, stale-while-revalidate=300, stale-if-error=300 |
-      | X-Cache       | HIT                                          |
-      | X-Cache-Hits  | 1                                            |
+#      | X-Cache       | HIT                                          |
+#      | X-Cache-Hits  | 1                                            |
     And "Age" response header has value greater than 0
 
     Examples:
@@ -45,8 +45,8 @@ Feature: As an site administrator I want my pages to be cached using Varnish
     And response headers contain
       | Header        | Value                                        |
       | cache-control | public, s-maxage=600, stale-while-revalidate=300, stale-if-error=300 |
-      | X-Cache       | HIT                                          |
-      | X-Cache-Hits  | 1                                            |
+#      | X-Cache       | HIT                                          |
+#      | X-Cache-Hits  | 1                                            |
 
     Examples:
       | user      | itemName        | itemNameAfterEdit |

@@ -34,9 +34,7 @@ class ContentContext implements Context
 
         for ($i = 0; $i < $numberOfItems; ++$i) {
             $this->contentFacade->createContent($contentTypeIdentifier, $parentUrl, $language);
-            gc_collect_cycles();
         }
-        gc_collect_cycles();
     }
 
     /**

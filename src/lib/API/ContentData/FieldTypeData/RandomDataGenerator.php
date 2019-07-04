@@ -37,6 +37,7 @@ class RandomDataGenerator
 
     protected function getFaker(): Generator
     {
+        gc_collect_cycles();
         return self::$faker;
     }
 }

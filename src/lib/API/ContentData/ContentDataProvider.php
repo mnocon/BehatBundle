@@ -60,8 +60,6 @@ class ContentDataProvider
     {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($this->contentTypeIdentifier);
         $fieldDefinitions = $contentType->getFieldDefinitions();
-        var_dump(sprintf('Passed data:'));
-        var_dump($contentItemData);
 
         foreach ($contentItemData as $fieldIdentifier => $value) {
             $fieldDefinition = array_values(array_filter($fieldDefinitions, function (FieldDefinition $fieldDefinition) use ($fieldIdentifier) {
