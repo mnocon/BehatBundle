@@ -71,6 +71,10 @@ class ContentDataProvider
 
             var_dump($fieldDefinition);
 
+            if (empty($fieldDefinition)) {
+                throw new \Exception(sprintf('Did not find fieldIdentifier: %s in content type: %s', $fieldIdentifier, $this->contentTypeIdentifier));
+            }
+
             $fieldData = $this->getFieldDataFromString($fieldDefinition[0]->fieldTypeIdentifier, $value);
             $contentStruct->setField($fieldIdentifier, $fieldData, $language);
         }

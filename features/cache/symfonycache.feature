@@ -13,8 +13,8 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
       | field | value      |
       | title | <itemName> |
     And response headers contain
-      | Header        | Value             |
-      | Cache-Control | no-cache, private |
+      | Header        | Value                  |
+      | Cache-Control | public, s-maxage=86400 |
     And "Age" response header has value greater than 0
 
     Examples:
@@ -32,7 +32,7 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
     And I see correct preview data for "Folder" Content Type
       | field | value      |
       | title | <itemName> |
-    When I edit "<itemName" Content item in "eng-GB"
+    When I edit "<itemName>" Content item in "eng-GB"
       | short_name          |
       | <itemNameAfterEdit> |
     And I reload the page

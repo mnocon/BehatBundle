@@ -45,6 +45,8 @@ class CacheContext implements Context
     {
         $responseHeaders = $this->browserContext->getSession()->getDriver()->getResponseHeaders();
 
+        var_dump($responseHeaders);
+
         Assert::assertGreaterThan(0,$responseHeaders[$headerName][0]);
     }
 }
