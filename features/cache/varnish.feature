@@ -39,6 +39,9 @@ Feature: As an site administrator I want my pages to be cached using Varnish
       | <itemNameAfterEdit> |
     And I reload the page
     And I reload the page
+    And I reload the page
+    And I reload the page
+    And I reload the page
     Then I see correct preview data for "Folder" Content Type
       | field | value               |
       | title | <itemNameAfterEdit> |
