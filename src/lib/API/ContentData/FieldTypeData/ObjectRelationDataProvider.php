@@ -7,14 +7,11 @@
 namespace EzSystems\Behat\API\ContentData\FieldTypeData;
 
 use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Exceptions\NotImplementedException;
-use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\SearchService;
+use eZ\Publish\API\Repository\URLAliasService;
 use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
-use eZ\Publish\Core\Event\URLAliasService;
 use eZ\Publish\Core\FieldType\Relation\Value;
 use EzSystems\Behat\Core\Behat\ArgumentParser;
 
