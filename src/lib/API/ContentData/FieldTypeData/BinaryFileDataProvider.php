@@ -31,6 +31,7 @@ class BinaryFileDataProvider implements FieldTypeDataProviderInterface
 
     public function parseFromString(string $value)
     {
+        var_dump($value);
         return new Value(['inputUri' => $value]);
     }
 }

@@ -13,16 +13,16 @@ Feature: As an site administrator I want my pages to be cached using Varnish
       | field | value      |
       | title | <itemName> |
     And response headers contain
-      | Header        | Value                                        |
-      | cache-control | public, s-maxage=600, stale-while-revalidate=300, stale-if-error=300 |
+      | Header        | Value                 |
+      | cache-control | <cache-control-value> |
 #      | X-Cache       | HIT                                          |
 #      | X-Cache-Hits  | 1                                            |
     And "Age" response header has value greater than 0
 
     Examples:
-    | user      | itemName                     |
-    | admin     | TestFolderShortNameAdmin     |
-    | anonymous | TestFolderShortNameAnonymous |
+    | user      | itemName                     | cache-control-value                                                  |
+    | admin     | TestFolderShortNameAdmin     | private, no-cache, no-store, must-revalidate                         |
+    | anonymous | TestFolderShortNameAnonymous | public, s-maxage=600, stale-while-revalidate=300, stale-if-error=300 |
 
   @admin
   Scenario Outline: Cache is refreshed when item is edited

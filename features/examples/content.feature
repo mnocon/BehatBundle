@@ -64,13 +64,13 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
        | Checkbox CT2          | CheckboxCT2           | Checkbox                     | true                                                                        |
        | Country CT2           | CountryCT2            | Country                      | FR                                                                          |
        | Date CT2              | DateCT2               | Date                         | 2018-12-31                                                                  |
-       | Time CT2              | TimeCT2               | Time                         | 13:55                                                                       |
+       | Time CT2              | TimeCT2               | Time                         | 13:55:00                                                                    |
        | Float CT2             | FloatCT2              | Float                        | 2.34                                                                        |
        | Integer CT2           | Integer2              | Integer                      | 10                                                                          |
-       | Map location CT2      | MapLocationCT2        | Map location                 | 59.19930,9.61360                                                            |
-       | Date and time CT2     | DateAndTimeCT2        | Date and time                | 2018-12-31 13:55                                                            |
+       | Map location CT2      | MapLocationCT2        | Map location                 | Tokio                                                                       |
+       | Date and time CT2     | DateAndTimeCT2        | Date and time                | 2018-12-31 13:55:00                                                         |
        | Content relation CT2  | ContentRelationCT2    | Content relation (single)    | /RelationFolder1                                                            |
        | Content relations CT2 | ContentRelationsCT2   | Content relations (multiple) | RelationFolder1,/RelationFolder2                                            |
        | Image CT2             | ImageCT2              | Image                        | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Images/small1.jpg |
        | File CT2              | FileCT2               | File                         | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Files/file1.txt   |
-       | Media CT              | MediaCT2              | Media                        | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Videos/video1.mp4 |
+       | Media CT2             | MediaCT2              | Media                        | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Videos/video1.mp4 |
