@@ -35,20 +35,17 @@ class ContentDataProvider
         $this->fieldTypeDataProviders[] = $fieldTypeDataProvider;
     }
 
-    public function newContentCreateStruct(string $language): ContentCreateStruct
-    {
-        $contentType = $this->contentTypeService->loadContentTypeByIdentifier($this->contentTypeIdentifier);
-        return $this->contentService->newContentCreateStruct($contentType, $language);
-    }
-
     public function setContentTypeIdentifier(string $contentTypeIdentifier)
     {
         $this->contentTypeIdentifier = $contentTypeIdentifier;
     }
 
-    public function getRandomContentData(ContentCreateStruct $contentCreateStruct, string $language): ContentCreateStruct
+    public function getRandomContentData($language): ContentCreateStruct
     {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($this->contentTypeIdentifier);
+
+        $contentCreateStruct = $this->contentService->newContentCreateStruct($contentType, $language);
+
         $fieldDefinitions = $contentType->getFieldDefinitions();
 
         foreach ($fieldDefinitions as $field) {
