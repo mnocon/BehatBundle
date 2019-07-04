@@ -61,6 +61,7 @@ class FrontendContext implements Context
         $url = $this->argumentParser->parseUrl($url);
         $this->browserContext->visit(sprintf('/%s%s', $siteaccess, $url));
         $this->browserContext->printCurrentUrl();
+        sleep(3); // todo - if refresh is too fast then age is still 0
     }
 
     /**

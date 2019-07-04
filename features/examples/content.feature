@@ -54,23 +54,23 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
 
   Examples:
        | contentTypeName       | contentTypeIdentifier | valueToSet                                                                  |
-       | RichText CT2          | RichTextCT            | EditedField                                                                 |
-       | URL CT2               | URLCT                 | www.ez.no                                                                   |
-       | Email CT2             | EmailCT               | nospam@ez.no                                                                |
-       | Textline CT2          | TextlineCT            | TestTextLine                                                                |
-       | ISBN CT2              | IsbnCT                | 9783161484100                                                               |
-       | Authors CT2           | AuthorsCT             | AuthorName,nospam@ez.no                                                     |
-       | Text block CT2        | TextBlockCT           | TestTextBlock                                                               |
-       | Checkbox CT2          | CheckboxCT            | true                                                                        |
-       | Country CT2           | CountryCT             | FR                                                                          |
-       | Date CT2              | DateCT                | 2018-12-31                                                                  |
-       | Time CT2              | TimeCT                | 13:55                                                                       |
-       | Float CT2             | FloatCT               | 2.34                                                                        |
-       | Integer CT2           | Integer               | 10                                                                          |
-       | Map location CT2      | MapLocationCT         | 59.19930,9.61360                                                            |
-       | Date and time CT2     | DateAndTimeCT         | 2018-12-31 13:55                                                            |
-       | Content relation CT2  | ContentRelationCT     | /RelationFolder1                                                            |
-       | Content relations CT2 | ContentRelationsCT    | RelationFolder1,/RelationFolder2                                            |
-       | Image CT2             | ImageCT               | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Images/small1.jpg |
-       | File CT2              | FileCT                | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Files/file1.txt   |
-       | Media CT              | MediaCT               | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Videos/video1.mp4 |
+       | RichText CT2          | RichTextCT2           | EditedField                                                                 |
+       | URL CT2               | URLCT2                | www.ez.no                                                                   |
+       | Email CT2             | EmailCT2              | nospam@ez.no                                                                |
+       | Textline CT2          | TextlineCT2           | TestTextLine                                                                |
+       | ISBN CT2              | IsbnCT2               | 9783161484100                                                               |
+       | Authors CT2           | AuthorsCT2            | AuthorName,nospam@ez.no                                                     |
+       | Text block CT2        | TextBlockCT2          | TestTextBlock                                                               |
+       | Checkbox CT2          | CheckboxCT2           | true                                                                        |
+       | Country CT2           | CountryCT2            | FR                                                                          |
+       | Date CT2              | DateCT2               | 2018-12-31                                                                  |
+       | Time CT2              | TimeCT2               | 13:55                                                                       |
+       | Float CT2             | FloatCT2              | 2.34                                                                        |
+       | Integer CT2           | Integer2              | 10                                                                          |
+       | Map location CT2      | MapLocationCT2        | 59.19930,9.61360                                                            |
+       | Date and time CT2     | DateAndTimeCT2        | 2018-12-31 13:55                                                            |
+       | Content relation CT2  | ContentRelationCT2    | /RelationFolder1                                                            |
+       | Content relations CT2 | ContentRelationsCT2   | RelationFolder1,/RelationFolder2                                            |
+       | Image CT2             | ImageCT2              | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Images/small1.jpg |
+       | File CT2              | FileCT2               | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Files/file1.txt   |
+       | Media CT              | MediaCT2              | /var/www/ezplatform/vendor/ezsystems/behatbundle/lib/Data/Videos/video1.mp4 |

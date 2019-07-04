@@ -60,8 +60,6 @@ class ContentContext implements Context
         $locationURL = $this->argumentParser->parseUrl($locationURL);
         $parsedContentItemData = $this->parseData($contentItemsData);
 
-        var_dump($parsedContentItemData);
-
         foreach ($parsedContentItemData as $contentItemData) {
             $this->contentFacade->editContent($locationURL, $language, $contentItemData);
         }

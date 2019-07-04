@@ -41,8 +41,8 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
       | field | value               |
       | title | <itemNameAfterEdit> |
     And response headers contain
-      | Header        | Value             |
-      | Cache-Control | no-cache, private |
+      | Header        | Value                  |
+      | Cache-Control | public, s-maxage=86400 |
 
     Examples:
       | user      | itemName        | itemNameAfterEdit |

@@ -60,8 +60,7 @@ class ContentDataProvider
     {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($this->contentTypeIdentifier);
         $fieldDefinitions = $contentType->getFieldDefinitions();
-        var_dump($this->contentTypeIdentifier);
-        var_dump($fieldDefinitions);
+        var_dump(sprintf('Passed data:'));
         var_dump($contentItemData);
 
         foreach ($contentItemData as $fieldIdentifier => $value) {
@@ -69,10 +68,8 @@ class ContentDataProvider
                 return $fieldDefinition->identifier === $fieldIdentifier;
             }));
 
-            var_dump($fieldDefinition);
-
             if (empty($fieldDefinition)) {
-                throw new \Exception(sprintf('Did not find fieldIdentifier: %s in content type: %s', $fieldIdentifier, $this->contentTypeIdentifier));
+                throw new \Exception(sprintf('Could not find fieldIdentifier: %s in content type: %s', $fieldIdentifier, $this->contentTypeIdentifier));
             }
 
             $fieldData = $this->getFieldDataFromString($fieldDefinition[0]->fieldTypeIdentifier, $value);

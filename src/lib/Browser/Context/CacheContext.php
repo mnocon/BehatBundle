@@ -32,6 +32,7 @@ class CacheContext implements Context
         $responseHeaders = $this->browserContext->getSession()->getDriver()->getResponseHeaders();
 
         var_dump($this->browserContext->getSession()->getPage()->getContent());
+        var_dump($responseHeaders);
 
         foreach ($expectedHeadersData->getHash() as $row) {
             Assert::assertEquals($row['Value'], $responseHeaders[$row['Header']][0]);
@@ -44,8 +45,6 @@ class CacheContext implements Context
     public function headerHasValueGreaterThanZero(string $headerName): void
     {
         $responseHeaders = $this->browserContext->getSession()->getDriver()->getResponseHeaders();
-
-        var_dump($responseHeaders);
 
         Assert::assertGreaterThan(0,$responseHeaders[$headerName][0]);
     }
