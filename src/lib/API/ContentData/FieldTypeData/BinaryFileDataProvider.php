@@ -26,6 +26,8 @@ class BinaryFileDataProvider implements FieldTypeDataProviderInterface
         $filename = self::FILES[array_rand(self::FILES, 1)];
         $filePath = sprintf('%s/%s/%s', __DIR__, self::FILES_PATH, $filename);
 
+        var_dump($filePath);
+
         return new Value(['inputUri' => $filePath]);
     }
 
