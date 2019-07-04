@@ -46,11 +46,9 @@ class ContentFacade
 
         $this->contentDataProvider->setContentTypeIdentifier($contentTypeIdentifier);
 
-        $contentCreateStruct = $this->contentDataProvider->getRandomContentData($language);
-
-        if ($contentItemData) {
-            $contentCreateStruct = $this->contentDataProvider->getFilledContentDataStruct($contentCreateStruct, $contentItemData, $language);
-        }
+        $contentCreateStruct = $contentItemData === null ?
+            $this->contentDataProvider->getRandomContentData($this->contentDataProvider->newContentCreateStruct($language), $language):
+            $this->contentDataProvider->getFilledContentDataStruct($this->contentDataProvider->newContentCreateStruct($language), $contentItemData, $language);
 
         $draft = $this->contentService->createContent($contentCreateStruct, [$locationCreateStruct]);
         $this->contentService->publishVersion($draft->versionInfo);
