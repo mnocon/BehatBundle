@@ -47,8 +47,6 @@ class ImageDataProvider extends RandomDataGenerator implements FieldTypeDataProv
 
     public function parseFromString(string $value)
     {
-        var_dump($value);
-
         return new Value(
             [
                 'path' => $value,

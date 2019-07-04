@@ -37,8 +37,6 @@ class MediaDataProvider implements FieldTypeDataProviderInterface
 
     public function parseFromString(string $value)
     {
-        var_dump($value);
-
         $mediaValue = new Value(['inputUri' => $value]);
         $mediaValue->hasController = true;
         $mediaValue->autoplay = true;

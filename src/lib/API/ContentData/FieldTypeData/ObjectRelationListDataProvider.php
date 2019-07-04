@@ -23,6 +23,11 @@ class ObjectRelationListDataProvider extends ObjectRelationDataProvider
 
     public function parseFromString(string $value)
     {
-        throw new NotImplementedException('Not implemented');
+        $itemsToAdd = [];
+        foreach (explode(',', $value) as $itemToAdd) {
+            $itemsToAdd[] = $this->getContentID($itemToAdd);
+        }
+
+        return new Value($itemsToAdd);
     }
 }
