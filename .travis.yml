@@ -5,7 +5,7 @@ php:
 
 env:
   global:
-    - EZPLATFORM_REPO="https://github.com/mnocon/ezplatform.git"
+    - EZPLATFORM_REPO="https://github.com/ezsystems/ezplatform.git"
     - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/selenium.yml"
     - APP_ENV=behat
     - APP_DEBUG=1
@@ -38,6 +38,7 @@ matrix:
         - BEHAT_OPTS="--profile=behat --suite=cache --tags=varnish"
         - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/varnish.yml:doc/docker/selenium.yml"
         - WEB_HOST=varnish
+        - EZPLATFORM_REPO="https://github.com/mnocon/ezplatform.git"
 
 git:
   depth: 30
