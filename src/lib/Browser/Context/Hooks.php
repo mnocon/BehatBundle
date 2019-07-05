@@ -6,7 +6,6 @@
  */
 namespace EzSystems\Behat\Browser\Context;
 
-use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\AfterStepScope;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Symfony2Extension\Context\KernelDictionary;

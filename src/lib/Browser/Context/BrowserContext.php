@@ -307,7 +307,6 @@ class BrowserContext extends MinkContext
         $this->getSession()->getDriver()->executeScript($movingScript);
     }
 
-
     private function loadDraggingLibrary(): void
     {
         if ($this->isDraggingLibraryLoaded()) {
