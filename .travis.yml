@@ -72,9 +72,9 @@ script:
   - if [ "${WEB_HOST}" != "web" ] ; then cd "$HOME/build/ezplatform"; docker-compose exec --user www-data app sh -c "cat /var/www/config/packages/ezplatform.yaml" ; fi
   - if [ "${WEB_HOST}" != "web" ] ; then cd "$HOME/build/ezplatform"; docker-compose exec --user www-data varnish sh -c "cat /etc/varnish/parameters.vcl" ; fi
 
-  - cd "$HOME/build/ezplatform"; docker-compose exec --user www-data web sh -c "printenv"
-  - cd "$HOME/build/ezplatform"; docker-compose exec --user www-data app sh -c "printenv"
-  - cd "$HOME/build/ezplatform"; docker-compose exec --user www-data varnish sh -c "printenv"
+  - if [ "${WEB_HOST}" != "web" ] ; then  cd "$HOME/build/ezplatform"; docker-compose exec --user www-data web sh -c "printenv" ; fi
+  - if [ "${WEB_HOST}" != "web" ] ; then  cd "$HOME/build/ezplatform"; docker-compose exec --user www-data app sh -c "printenv" ; fi
+  - if [ "${WEB_HOST}" != "web" ] ; then  cd "$HOME/build/ezplatform"; docker-compose exec --user www-data varnish sh -c "printenv" ; fi
 
   - if [ "${CHECK_CS}" == "1" ] ; then ./vendor/bin/php-cs-fixer fix -v --dry-run --show-progress=estimating ; fi
   - if [ "${PHPUNIT_CONFIG}" != '' ]; then ./vendor/bin/phpunit -c "${PHPUNIT_CONFIG}"; fi
