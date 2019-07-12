@@ -47,4 +47,4 @@ Feature: As an site administrator I want my pages to be cached using Symfony Htt
     Examples:
       | user      | itemName        | itemNameAfterEdit |
       | admin     | NameToEditAdmin | NameEditedAdmin   |
-      | anonymous | NameToEditAnon  | NameToEditAnon    |
+      | anonymous | NameToEditAnon  | NameEditedAnon    |
