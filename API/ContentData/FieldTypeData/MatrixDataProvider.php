@@ -59,21 +59,23 @@ class MatrixDataProvider extends AbstractFieldTypeDataProvider
      */
     public function parseFromString(string $value)
     {
-//        // TODO WYPROSTOWAC
-//        $rows = explode(',', $value);
-//
-//        $parsedRows = [];
-//        foreach ($rows as $row) {
-//            $parsedRow = [];
-//            $columnValues = explode(':', $row);
-//            for ($i = 0; $i < count($columnValues), $i++) {
-//                $parsedRow[$columnIdentifiers[$i]] = $columnValues[$i];
-//            }
-//
-//            $parsedRows = new Row($parsedRow);
-//        }
-//
-//        return new Value($parsedRows);
+        $rows = explode(',', $value);
+
+        $columnIdentifiers = explode(':', array_shift($rows));
+        $numberOfColumns = count($columnIdentifiers);
+
+        $parsedRows = [];
+        foreach ($rows as $row) {
+            $parsedRow = [];
+            $columnValues = explode(':', $row);
+            for ($i = 0; $i < $numberOfColumns; $i++) {
+                $parsedRow[$columnIdentifiers[$i]] = $columnValues[$i];
+            }
+
+            $parsedRows[] = new Row($parsedRow);
+        }
+        
+        return new Value($parsedRows);
     }
 
     private function getRandomEntry($columnIdentifiers) {

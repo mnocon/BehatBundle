@@ -1,6 +1,6 @@
 Feature: Example scenarios showing how to use steps involving Languages, Content Types and Content Items
 
-  @admin @test
+  @admin
   Scenario Outline: Create a language, Content Type and Content Items
     Given Language "Polski" with code "pol-PL" exists
     And I create a "<contentTypeName>" Content Type in "Content" with "<contentTypeIdentifier>" identifier
@@ -37,12 +37,12 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
       | Matrix CT          | MatrixCT             | Matrix                       | Min_rows:5,Columns:col1-col2-col3 |
 
 
-  @admin
+  @admin @test
   Scenario Outline: Create a Content item and edit specified field
     Given I create a "<contentTypeName>" Content Type in "Content" with "<contentTypeIdentifier>" identifier
-      | Field Type  | Name         | Identifier        | Required | Searchable | Translatable |
-      | Text line   | Name         | name	           | yes      | yes	       | yes          |
-      | <fieldType> | TestedField  | testedfield       | yes      | no	       | yes          |
+      | Field Type  | Name         | Identifier        | Required | Searchable | Translatable | Settings        |
+      | Text line   | Name         | name	           | yes      | yes	       | yes          |                 |
+      | <fieldType> | TestedField  | testedfield       | yes      | no	       | yes          | <fieldSettings> |
     And I create <contentTypeIdentifier> Content items in root in "eng-GB"
       | name              |
       | <contentTypeName> |
@@ -55,24 +55,25 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
       | <valueToSet> |
 
     Examples:
-      | contentTypeName       | contentTypeIdentifier | fieldType                    | valueToSet                                                                         |
-      | RichText CT2          | RichTextCT2           | Rich text                    | EditedField                                                                        |
-      | URL CT2               | URLCT2                | URL                          | www.ez.no                                                                          |
-      | Email CT2             | EmailCT2              | Email address                | nospam@ez.no                                                                       |
-      | Textline CT2          | TextlineCT2           | Text line                    | TestTextLine                                                                       |
-      | ISBN CT2              | IsbnCT2               | ISBN                         | 9783161484100                                                                      |
-      | Authors CT2           | AuthorsCT2            | Authors                      | AuthorName,nospam@ez.no                                                            |
-      | Text block CT2        | TextBlockCT2          | Text block                   | TestTextBlock                                                                      |
-      | Checkbox CT2          | CheckboxCT2           | Checkbox                     | true                                                                               |
-      | Country CT2           | CountryCT2            | Country                      | FR                                                                                 |
-      | Date CT2              | DateCT2               | Date                         | 2018-12-31                                                                         |
-      | Time CT2              | TimeCT2               | Time                         | 13:55:00                                                                           |
-      | Float CT2             | FloatCT2              | Float                        | 2.34                                                                               |
-      | Integer CT2           | Integer2              | Integer                      | 10                                                                                 |
-      | Map location CT2      | MapLocationCT2        | Map location                 | Tokio                                                                              |
-      | Date and time CT2     | DateAndTimeCT2        | Date and time                | 2018-12-31 13:55:00                                                                |
-      | Content relation CT2  | ContentRelationCT2    | Content relation (single)    | /RelationFolder1                                                                   |
-      | Content relations CT2 | ContentRelationsCT2   | Content relations (multiple) | RelationFolder1,/RelationFolder2                                                   |
-      | Image CT2             | ImageCT2              | Image                        | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Images/small1.jpg |
-      | File CT2              | FileCT2               | File                         | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Files/file1.txt   |
-      | Media CT2             | MediaCT2              | Media                        | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Videos/video1.mp4 |
+      | contentTypeName       | contentTypeIdentifier | fieldType                    | valueToSet                                                                         | fieldSettings                        |
+#      | RichText CT2          | RichTextCT2           | Rich text                    | EditedField                                                                        |                                      |
+#      | URL CT2               | URLCT2                | URL                          | www.ez.no                                                                          |                                      |
+#      | Email CT2             | EmailCT2              | Email address                | nospam@ez.no                                                                       |                                      |
+#      | Textline CT2          | TextlineCT2           | Text line                    | TestTextLine                                                                       |                                      |
+#      | ISBN CT2              | IsbnCT2               | ISBN                         | 9783161484100                                                                      |                                      |
+#      | Authors CT2           | AuthorsCT2            | Authors                      | AuthorName,nospam@ez.no                                                            |                                      |
+#      | Text block CT2        | TextBlockCT2          | Text block                   | TestTextBlock                                                                      |                                      |
+#      | Checkbox CT2          | CheckboxCT2           | Checkbox                     | true                                                                               |                                      |
+#      | Country CT2           | CountryCT2            | Country                      | FR                                                                                 |                                      |
+#      | Date CT2              | DateCT2               | Date                         | 2018-12-31                                                                         |                                      |
+#      | Time CT2              | TimeCT2               | Time                         | 13:55:00                                                                           |                                      |
+#      | Float CT2             | FloatCT2              | Float                        | 2.34                                                                               |                                      |
+#      | Integer CT2           | Integer2              | Integer                      | 10                                                                                 |                                      |
+#      | Map location CT2      | MapLocationCT2        | Map location                 | Tokio                                                                              |                                      |
+#      | Date and time CT2     | DateAndTimeCT2        | Date and time                | 2018-12-31 13:55:00                                                                |                                      |
+#      | Content relation CT2  | ContentRelationCT2    | Content relation (single)    | /RelationFolder1                                                                   |                                      |
+#      | Content relations CT2 | ContentRelationsCT2   | Content relations (multiple) | RelationFolder1,/RelationFolder2                                                   |                                      |
+#      | Image CT2             | ImageCT2              | Image                        | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Images/small1.jpg |                                      |
+#      | File CT2              | FileCT2               | File                         | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Files/file1.txt   |                                      |
+#      | Media CT2             | MediaCT2              | Media                        | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Videos/video1.mp4 |                                      |
+      | Matrix CT2            | MatrixCT2             | Matrix                       | col1:col2:col3,Ala:miała:kota,Szpak:dziobał:bociana,Bociana:dziobał:szpak          | Min_rows:2,Columns:col1-col2-col3 |
