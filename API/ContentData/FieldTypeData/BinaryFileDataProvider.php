@@ -21,7 +21,7 @@ class BinaryFileDataProvider implements FieldTypeDataProviderInterface
         return $fieldTypeIdentifier === 'ezbinaryfile';
     }
 
-    public function generateData(string $language = 'eng-GB')
+    public function generateData(string $contentTypeIdentifier, string $fieldIdentifier, string $language = 'eng-GB')
     {
         $filename = self::FILES[array_rand(self::FILES, 1)];
         $filePath = sprintf('%s/%s/%s', __DIR__, self::FILES_PATH, $filename);

@@ -43,14 +43,17 @@ class ContentTypeContext implements Context
         $position = 10;
 
         foreach ($fieldDetails->getHash() as $fieldData) {
+            $fieldTypeIdentifier = $this->contentTypeFacade->getFieldTypeIdentifierByName($fieldData['Field Type']);
+
             $parsedFields[] = new FieldDefinitionCreateStruct([
-                'fieldTypeIdentifier' => $this->contentTypeFacade->getFieldTypeIdentifierByName($fieldData['Field Type']),
+                'fieldTypeIdentifier' => $fieldTypeIdentifier,
                 'identifier' => $fieldData['Identifier'],
                 'names' => ['eng-GB' => $fieldData['Name']],
                 'position' => $position,
                 'isRequired' => $this->parseBool($fieldData['Required']),
                 'isTranslatable' => $this->parseBool($fieldData['Translatable']),
                 'isSearchable' => $this->parseBool($fieldData['Searchable']),
+                'fieldSettings' => $this->parseFieldSettings($fieldTypeIdentifier, $fieldData['Settings']),
             ]);
 
             $position += 10;
@@ -62,5 +65,25 @@ class ContentTypeContext implements Context
     private function parseBool(string $value): bool
     {
         return $value === 'yes';
+    }
+
+    private function parseFieldSettings(string $fieldTypeIdentifier, string $settings)
+    {
+        $parsedSettings = [];
+        // TODO: Clean this up in the future if needed
+        switch ($fieldTypeIdentifier) {
+            case 'ezmatrix':
+                $fields = explode(',', $settings);
+                $minRows = (int) explode(':', $fields[0])[1];
+                $parsedSettings['minimum_rows'] = $minRows;
+                $columns = explode('-', explode(':', $fields[1])[1]);
+                foreach ($columns as $column) {
+                    $parsedSettings['columns'][] = ['identifier' => $column, 'name' => $column];
+                }
+
+                return $parsedSettings;
+            default:
+                return $parsedSettings;
+        }
     }
 }

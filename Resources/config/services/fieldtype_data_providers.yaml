@@ -26,7 +26,15 @@ services:
 
   EzSystems\BehatBundle\API\ContentData\FieldTypeData\BinaryFileDataProvider: ~
 
-  EzSystems\BehatBundle\API\ContentData\FieldTypeData\BooleanDataProvider: ~
+  EzSystems\BehatBundle\API\ContentData\FieldTypeData\BooleanDataProvider:
+    arguments:
+      - '@EzSystems\BehatBundle\API\ContentData\RandomDataGenerator'
+      - '@eZ\Publish\API\Repository\ContentTypeService'
+
+  EzSystems\BehatBundle\API\ContentData\FieldTypeData\MatrixDataProvider:
+    arguments:
+      - '@EzSystems\BehatBundle\API\ContentData\RandomDataGenerator'
+      - '@eZ\Publish\API\Repository\ContentTypeService'
 
   EzSystems\BehatBundle\API\ContentData\FieldTypeData\CountryDataProvider: ~
 

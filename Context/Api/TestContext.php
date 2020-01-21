@@ -35,7 +35,7 @@ class TestContext implements Context
     }
 
     /**
-     * @BeforeScenario @admin
+     * @BeforeScenario @admin @repositoryUser-admin
      */
     public function loginAdminBeforeScenarioHook()
     {
