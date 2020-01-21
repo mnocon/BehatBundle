@@ -36,6 +36,10 @@ services:
       - '@EzSystems\BehatBundle\API\ContentData\RandomDataGenerator'
       - '@eZ\Publish\API\Repository\ContentTypeService'
 
+  EzSystems\BehatBundle\API\ContentData\FieldTypeData\SelectionDataProvider:
+    arguments:
+      - '@eZ\Publish\API\Repository\ContentTypeService'
+
   EzSystems\BehatBundle\API\ContentData\FieldTypeData\CountryDataProvider: ~
 
   EzSystems\BehatBundle\API\ContentData\FieldTypeData\DateDataProvider: ~

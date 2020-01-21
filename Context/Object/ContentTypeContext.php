@@ -64,7 +64,8 @@ class ContentTypeContext implements Context
 
     private function parseBool(string $value): bool
     {
-        return $value === 'yes';
+        $value = strtolower($value);
+        return $value === 'yes' || $value === 'true';
     }
 
     private function parseFieldSettings(string $fieldTypeIdentifier, string $settings)
@@ -81,6 +82,14 @@ class ContentTypeContext implements Context
                     $parsedSettings['columns'][] = ['identifier' => $column, 'name' => $column];
                 }
 
+                return $parsedSettings;
+            case 'ezselection':
+                $fields = explode(',', $settings);
+                $isMultiple = $this->parseBool(explode(':', $fields[0])[1]);
+                $options = explode(':', $fields[1])[1];
+                $parsedOptions = array_values(explode('-', $options));
+                $parsedSettings['isMultiple'] = $isMultiple;
+                $parsedSettings['options'] = $parsedOptions;
                 return $parsedSettings;
             default:
                 return $parsedSettings;

@@ -34,8 +34,8 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
 #      | Image CT             | ImageCT               | Image                        |                                      |
 #      | File CT              | FileCT                | File                         |                                      |
 #      | Media CT             | MediaCT               | Media                        |                                      |
-      | Matrix CT          | MatrixCT             | Matrix                       | Min_rows:5,Columns:col1-col2-col3 |
-
+#      | Matrix CT          | MatrixCT             | Matrix                       | Min_rows:5,Columns:col1-col2-col3 |
+#      | Selection CT          | SelectionCT             | Selection                       | is_multiple:false,options:A first-Bielefeld-TestValue-Turtles-Zombies|
 
   @admin @test
   Scenario Outline: Create a Content item and edit specified field
@@ -76,4 +76,5 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
 #      | Image CT2             | ImageCT2              | Image                        | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Images/small1.jpg |                                      |
 #      | File CT2              | FileCT2               | File                         | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Files/file1.txt   |                                      |
 #      | Media CT2             | MediaCT2              | Media                        | /var/www/vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Videos/video1.mp4 |                                      |
-      | Matrix CT2            | MatrixCT2             | Matrix                       | col1:col2:col3,Ala:miała:kota,Szpak:dziobał:bociana,Bociana:dziobał:szpak          | Min_rows:2,Columns:col1-col2-col3 |
+#      | Matrix CT2            | MatrixCT2             | Matrix                       | col1:col2:col3,Ala:miała:kota,Szpak:dziobał:bociana,Bociana:dziobał:szpak          | Min_rows:2,Columns:col1-col2-col3 |
+      | Selection CT2          | SelectionCT2             | Selection                 | 1,2        | is_multiple:true,options:Option1-Option2-Option3                                                |

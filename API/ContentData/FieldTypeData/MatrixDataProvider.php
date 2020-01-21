@@ -74,7 +74,7 @@ class MatrixDataProvider extends AbstractFieldTypeDataProvider
 
             $parsedRows[] = new Row($parsedRow);
         }
-        
+
         return new Value($parsedRows);
     }
 
