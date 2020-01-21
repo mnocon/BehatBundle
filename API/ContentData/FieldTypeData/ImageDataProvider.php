@@ -28,7 +28,7 @@ class ImageDataProvider extends AbstractFieldTypeDataProvider
         return $fieldTypeIdentifier === 'ezimage';
     }
 
-    public function generateData(string $language = 'eng-GB')
+    public function generateData(string $contentTypeIdentifier, string $fieldIdentifier, string $language = 'eng-GB')
     {
         $this->setLanguage($language);
 

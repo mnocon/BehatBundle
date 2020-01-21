@@ -13,7 +13,7 @@ class TextLineDataProvider extends AbstractFieldTypeDataProvider
         return $fieldTypeIdentifier === 'eztext';
     }
 
-    public function generateData(string $language = 'eng-GB'): string
+    public function generateData(string $contentTypeIdentifier, string $fieldIdentifier, string $language = 'eng-GB'): string
     {
         $this->setLanguage($language);
 
