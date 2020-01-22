@@ -3,11 +3,8 @@
 
 namespace EzSystems\BehatBundle\API\ContentData\FieldTypeData;
 
-
-use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\SearchService;
-use eZ\Publish\API\Repository\Values\Content\Query;
+use eZ\Publish\API\Repository\URLAliasService;
 use eZ\Publish\Core\FieldType\ImageAsset\AssetMapper;
 use eZ\Publish\Core\FieldType\ImageAsset\Value;
 use EzSystems\BehatBundle\API\ContentData\RandomDataGenerator;
@@ -15,11 +12,6 @@ use EzSystems\BehatBundle\Helper\ArgumentParser;
 
 class ImageAssetDataProvider extends AbstractFieldTypeDataProvider
 {
-    /**
-     * @var SearchService
-     */
-    private $searchService;
-
     /**
      * @var AssetMapper
      */
@@ -30,13 +22,33 @@ class ImageAssetDataProvider extends AbstractFieldTypeDataProvider
     private $imageDataProvider;
 
     private $mappings;
+    /**
+     * @var ArgumentParser
+     */
+    private $argumentParser;
+    /**
+     * @var LocationService
+     */
+    private $locationService;
+    /**
+     * @var URLAliasService
+     */
+    private $urlAliasService;
 
-    public function __construct(RandomDataGenerator $randomDataGenerator, SearchService $searchService, AssetMapper $assetMapper, ImageDataProvider $imageDataProvider, $mappings)
+    public function __construct(RandomDataGenerator $randomDataGenerator,
+                                AssetMapper $assetMapper,
+                                ImageDataProvider $imageDataProvider,
+                                ArgumentParser $argumentParser,
+                                LocationService $locationService,
+                                URLAliasService $urlAliasService,
+                                $mappings)
     {
         parent::__construct($randomDataGenerator);
-        $this->searchService = $searchService;
         $this->assetMapper = $assetMapper;
         $this->imageDataProvider = $imageDataProvider;
+        $this->argumentParser = $argumentParser;
+        $this->locationService = $locationService;
+        $this->urlAliasService = $urlAliasService;
         $this->mappings = $mappings;
     }
 
@@ -64,16 +76,11 @@ class ImageAssetDataProvider extends AbstractFieldTypeDataProvider
 
     public function parseFromString(string $value)
     {
-        // todo
-    }
-
-    protected function getContentID(string $locationPath)
-    {
-        $locationURL = $this->argumentParser->parseUrl($locationPath);
+        $locationURL = $this->argumentParser->parseUrl($value);
         $urlAlias = $this->urlAliasService->lookup($locationURL);
 
         $location = $this->locationService->loadLocation($urlAlias->destination);
 
-        return $location->getContentInfo()->id;
+        return new Value($location->getContentInfo()->id, $this->getFaker()->realText(100));
     }
 }

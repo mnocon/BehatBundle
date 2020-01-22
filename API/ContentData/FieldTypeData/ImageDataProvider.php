@@ -7,6 +7,7 @@
 namespace EzSystems\BehatBundle\API\ContentData\FieldTypeData;
 
 use eZ\Publish\Core\FieldType\Image\Value;
+use EzSystems\BehatBundle\API\ContentData\RandomDataGenerator;
 
 class ImageDataProvider extends AbstractFieldTypeDataProvider
 {
@@ -22,6 +23,14 @@ class ImageDataProvider extends AbstractFieldTypeDataProvider
     ];
 
     private const IMAGES_PATH = '../../../Data/Images';
+
+    private $projectDir;
+
+    public function __construct(RandomDataGenerator $randomDataGenerator, $projectDir)
+    {
+        parent::__construct($randomDataGenerator);
+        $this->projectDir = $projectDir;
+    }
 
     public function supports(string $fieldTypeIdentifier): bool
     {
@@ -47,9 +56,11 @@ class ImageDataProvider extends AbstractFieldTypeDataProvider
 
     public function parseFromString(string $value)
     {
+        $filePath = sprintf('%s/%s', $this->projectDir, $value);
+
         return new Value(
             [
-                'path' => $value,
+                'path' => $filePath,
                 'fileSize' => filesize($value),
                 'fileName' => basename($value),
                 'alternativeText' => $value,
