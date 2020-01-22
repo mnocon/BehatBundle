@@ -30,6 +30,8 @@ class MatrixDataProvider extends AbstractFieldTypeDataProvider
 
     public function generateData(string $contentTypeIdentifier, string $fieldIdentifier, string $language = 'eng-GB')
     {
+        $this->setLanguage($language);
+
         $fieldDefinition = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier)->getFieldDefinition($fieldIdentifier);
         $fieldSettings = $fieldDefinition->getFieldSettings();
 

@@ -40,6 +40,14 @@ services:
     arguments:
       - '@eZ\Publish\API\Repository\ContentTypeService'
 
+  EzSystems\BehatBundle\API\ContentData\FieldTypeData\ImageAssetDataProvider:
+    arguments:
+      - '@EzSystems\BehatBundle\API\ContentData\RandomDataGenerator'
+      - '@eZ\Publish\API\Repository\SearchService'
+      - '@eZ\Publish\Core\FieldType\ImageAsset\AssetMapper'
+      - '@EzSystems\BehatBundle\API\ContentData\FieldTypeData\ImageDataProvider'
+      - '$fieldtypes.ezimageasset.mappings$'
+
   EzSystems\BehatBundle\API\ContentData\FieldTypeData\CountryDataProvider: ~
 
   EzSystems\BehatBundle\API\ContentData\FieldTypeData\DateDataProvider: ~
