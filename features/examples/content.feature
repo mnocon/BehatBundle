@@ -51,6 +51,9 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
       | name              | short_name      |
       | RelationFolder1   | RelationFolder1 |
       | RelationFolder2   | RelationFolder2 |
+    And I create "Image" Content items in "/Media/Images" in "eng-GB"
+      | name               |
+      | ImageForImageAsset |
     When I edit "<contentTypeName>" Content item in "eng-GB"
       | testedfield  |
       | <valueToSet> |
@@ -79,4 +82,4 @@ Feature: Example scenarios showing how to use steps involving Languages, Content
 #      | Media CT2             | MediaCT2              | Media                        | vendor/ezsystems/behatbundle/EzSystems/BehatBundle/Data/Videos/video1.mp4 |                                      |
 #      | Matrix CT2            | MatrixCT2             | Matrix                       | col1:col2:col3,Ala:miała:kota,Szpak:dziobał:bociana,Bociana:dziobał:szpak          | Min_rows:2,Columns:col1-col2-col3 |
 #      | Selection CT2          | SelectionCT2             | Selection                 | 1,2        | is_multiple:true,options:Option1-Option2-Option3                                                |
-      | Image Asset CT2          | ImageAssetCT2             | Image Asset                 | 1,2        |                                                  |
+      | Image Asset CT2          | ImageAssetCT2             | Image Asset                 | /Media/Images/ImageForImageAsset         |                                                  |

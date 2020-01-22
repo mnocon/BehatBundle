@@ -64,7 +64,7 @@ class ImageAssetDataProvider extends AbstractFieldTypeDataProvider
         $imageAssetContentTypeIdentifier = $this->mappings['content_type_identifier'];
         $imageAssetFieldIdentifier = $this->assetMapper->getContentFieldIdentifier();
 
-        $imageAssetName = $this->getFaker()->sentence(2);
+        $imageAssetName = $this->getFaker()->realText(80, 1);
         $imageValue = $this->imageDataProvider->generateData($imageAssetContentTypeIdentifier, $imageAssetFieldIdentifier, $language);
 
         $content = $this->assetMapper->createAsset($imageAssetName, $imageValue, $language);
